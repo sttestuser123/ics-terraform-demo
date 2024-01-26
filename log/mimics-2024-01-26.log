@@ -1,0 +1,8 @@
+2024-01-26T14:17:14Z INF mimICS 1.3.5, build 5e57af2
+2024-01-26T14:17:14Z INF Running scan
+2024-01-26T14:17:14Z INF Parsing TF Plan: out.plan.json
+2024-01-26T14:17:14Z INF Starting local scan for out.plan.json
+2024-01-26T14:17:14Z INF Analyzing "out.plan.json"
+2024-01-26T14:17:14Z INF Rego analysis complete
+2024-01-26T14:17:14Z INF scan complete
+2024-01-26T14:17:14Z INF Scan failed on one or more insights
