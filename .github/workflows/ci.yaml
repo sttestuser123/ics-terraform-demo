@@ -7,6 +7,10 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   ics-scan-and-upload:
     name: insightCloudSec repository scan with Github Advanced Security
