@@ -7,23 +7,54 @@ on:
       - main
   pull_request:
 
-permissions:
-  contents: read
-  security-events: write
-
 jobs:
-  ics-scan-and-upload:
-    name: insightCloudSec repository scan with Github Advanced Security
+  terraform-code-scan:
+    name: Scan Terraform 
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
     
-      - name: Scan the repository
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1 
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out out.plan && terraform show -json out.plan > out.plan.json
+
+      - name: Scan the TF plan
         uses: rapid7/insightcloudsec-actions@v2
         with:
           api_key: ${{ secrets.ics_api_key }}
           base_url: ${{ secrets.ics_base_url }}
           config_name: Demo IaC Configuration
-      
+          target: out.plan.json
+
+      - name: Attach scan artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mimics-scan-artifacts
+          path: |
+            ./log/mimics*.log
+            ./ics_scan.*
+
+      - name: Upload the sarif report to Github Advanced Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ics_scan.sarif
