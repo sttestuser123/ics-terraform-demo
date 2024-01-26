@@ -58,9 +58,6 @@ jobs:
           name: terraform-plan-json
           path: out.plan.json
 
-      - name: show filaes
-        run: ls -l
-         
       - name: Scan the TF plan
         uses: rapid7/insightcloudsec-actions@v2
         with:
@@ -68,3 +65,12 @@ jobs:
           base_url: ${{ secrets.ics_base_url }}
           config_name: Demo IaC Configuration
           target: out.plan.json
+
+      - name: Attach scan artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ICS-scan-artifacts
+          path: |
+            ./log/mimics*.log
+            ./ics_scan.*
