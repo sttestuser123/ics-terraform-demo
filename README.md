@@ -1,7 +1,7 @@
 
 # ICS IaC Terraform Demo
 
-Github actions example of how to use the ICS IaC Scanner with Terraform.
+### Github actions example of how to use the ICS IaC Scanner with Terraform.
 
 Requires the ICS API key, ICS base_url, AWS Access Key and AWS Secret Access Key
 to be stored as Github Secrets.
