@@ -27,7 +27,7 @@ jobs:
         with:
           terraform_version: 1.6.6
           terraform_wrapper: false
-          
+
       - name: Terraform Init
         id: init
         run: terraform init
@@ -45,5 +45,23 @@ jobs:
         with:
           name: terraform-plan-json
           path: out.plan.json
+  
+  ics-scanner:
+    name: ICS Terraform Scan
+    needs: terraform-plan-generation
+    runs-on: ubuntu-latest
 
- 
+    steps:
+      - name: Retrieve the TF Plan Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-plan-json
+          path: out.plan.json
+
+      - name: Scan the TF plan
+        uses: rapid7/insightcloudsec-actions@v2
+        with:
+          api_key: ${{ secrets.ics_api_key }}
+          base_url: ${{ secrets.ics_base_url }}
+          config_name: Demo IaC Configuration
+          target: out.plan.json

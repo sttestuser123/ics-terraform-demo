@@ -6,3 +6,11 @@
 2024-01-26T14:17:14Z INF Rego analysis complete
 2024-01-26T14:17:14Z INF scan complete
 2024-01-26T14:17:14Z INF Scan failed on one or more insights
+2024-01-26T17:32:03Z INF mimICS 1.3.5, build 5e57af2
+2024-01-26T17:32:03Z INF Running scan
+2024-01-26T17:32:03Z INF Parsing TF Plan: ../../Downloads/out.plan 2.json
+2024-01-26T17:32:03Z INF Starting local scan for ../../Downloads/out.plan 2.json
+2024-01-26T17:32:03Z INF Analyzing "../../Downloads/out.plan 2.json"
+2024-01-26T17:32:03Z INF Rego analysis complete
+2024-01-26T17:32:03Z INF scan complete
+2024-01-26T17:32:03Z INF Scan failed on one or more insights
