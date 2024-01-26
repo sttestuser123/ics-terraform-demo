@@ -1,7 +1,7 @@
-variable "public" {
+variable "secure" {
     type = bool
-    description = "Whether the bucket is public or not"
-    default = true
+    description = "Whether this template is secure or not"
+    default = false
 }
 
 variable "ics-test-bucket" {
