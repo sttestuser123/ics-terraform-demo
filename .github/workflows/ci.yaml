@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan-json
-          path: ${{ vars.GITHUB_RUN_NUMBER }}.json
+          path: out.plan.json
   
   ics-scanner:
     name: ICS Terraform Scan
@@ -55,7 +55,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan-json
-          path: ${{ vars.GITHUB_RUN_NUMBER }}.json
+          path: out.plan.json
 
       - name: Scan the TF plan
         uses: rapid7/insightcloudsec-actions@v2
@@ -63,7 +63,7 @@ jobs:
           api_key: ${{ secrets.ics_api_key }}
           base_url: ${{ secrets.ics_base_url }}
           config_name: Demo IaC Configuration
-          target: ${{ vars.GITHUB_RUN_NUMBER }}.json
+          target: out.plan.json
 
       - name: Attach scan artifacts
         if: always()
