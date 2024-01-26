@@ -6,10 +6,10 @@
 Requires the ICS API key, ICS base_url, AWS Access Key and AWS Secret Access Key
 to be stored as Github Secrets.
 
-AWS_ACCESS_KEY
-AWS_SECRET_ACCESS_KEY
-ICS_API_KEY
-ICS_BASE_URL
+- AWS_ACCESS_KEY
+- AWS_SECRET_ACCESS_KEY
+- ICS_API_KEY
+- ICS_BASE_URL
 
 Once in place, update the Terraform variable "secure" to true or false. Setting
 to true will cause the action to complete without warnings. Setting to false
