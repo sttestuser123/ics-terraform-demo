@@ -57,8 +57,10 @@ jobs:
         with:
           name: terraform-plan-json
           path: out.plan.json
-        run: ls -la .
 
+      - name: show filaes
+        run: ls -l
+         
       - name: Scan the TF plan
         uses: rapid7/insightcloudsec-actions@v2
         with:
