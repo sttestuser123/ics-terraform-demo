@@ -62,7 +62,7 @@ jobs:
         with:
           api_key: ${{ secrets.ics_api_key }}
           base_url: ${{ secrets.ics_base_url }}
-          config_name: Demo IaC Configuration
+          config_name: Sample
           target: out.plan.json
 
       - name: Attach scan artifacts
